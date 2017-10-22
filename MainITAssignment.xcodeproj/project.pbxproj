@@ -15,7 +15,6 @@
 		9E5E609F1F93606600912EF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E5E609E1F93606600912EF6 /* Assets.xcassets */; };
 		9E5E60A21F93606600912EF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E5E60A01F93606600912EF6 /* LaunchScreen.storyboard */; };
 		9E5E60AA1F93608A00912EF6 /* Monster.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9E5E60A91F93608A00912EF6 /* Monster.scn */; };
-		9E5E60AC1F9362C300912EF6 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E60AB1F9362C300912EF6 /* Bullet.swift */; };
 		9E5E60AE1F93630300912EF6 /* bullet_texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9E5E60AD1F93630300912EF6 /* bullet_texture.jpg */; };
 		9E5E60B01F93649400912EF6 /* MonsterFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E60AF1F93649400912EF6 /* MonsterFile.swift */; };
 		9E5E60B21F9364D400912EF6 /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E60B11F9364D400912EF6 /* VirtualObject.swift */; };
@@ -32,7 +31,6 @@
 		9E5E60A11F93606600912EF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E5E60A31F93606600912EF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E5E60A91F93608A00912EF6 /* Monster.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = Monster.scn; path = art.scnassets/Monster.scn; sourceTree = "<group>"; };
-		9E5E60AB1F9362C300912EF6 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bullet.swift; path = /Users/yogita/Documents/MainITAssignment/MainITAssignment/Bullet.swift; sourceTree = "<absolute>"; };
 		9E5E60AD1F93630300912EF6 /* bullet_texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bullet_texture.jpg; sourceTree = "<group>"; };
 		9E5E60AF1F93649400912EF6 /* MonsterFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterFile.swift; sourceTree = "<group>"; };
 		9E5E60B11F9364D400912EF6 /* VirtualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 				9E5E60951F93606600912EF6 /* AppDelegate.swift */,
 				9E5E60971F93606600912EF6 /* art.scnassets */,
 				9E5E60991F93606600912EF6 /* ViewController.swift */,
-				9E5E60AB1F9362C300912EF6 /* Bullet.swift */,
 				9E4670601F96D487000F3D79 /* Crosshair.png */,
 				9E5E60B11F9364D400912EF6 /* VirtualObject.swift */,
 				9E5E60A91F93608A00912EF6 /* Monster.scn */,
@@ -165,7 +162,6 @@
 				9E5E60B01F93649400912EF6 /* MonsterFile.swift in Sources */,
 				9E5E609A1F93606600912EF6 /* ViewController.swift in Sources */,
 				9E5E60961F93606600912EF6 /* AppDelegate.swift in Sources */,
-				9E5E60AC1F9362C300912EF6 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

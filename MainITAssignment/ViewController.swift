@@ -114,11 +114,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // Placing the Monster
     
+    let path = Bundle.main.path(forResource: "Table", ofType: "scn", inDirectory: "Resources.scnassets/Models")
+    
     func placeMonster() {
-        
         
     //    let monsterNode = SCNNode()
         
+        let path = Bundle.main.path(forResource: "Monster", ofType: "scn", inDirectory: "art.scnassets")
+        let referenceURL = URL(fileURLWithPath: path!)
+        let referenceNode = SCNReferenceNode(url: referenceURL)!
+        referenceNode.load()
+        let monsterNode = referenceNode.childNodes.first!
+        
+        //sceneView.scene.rootNode.addChildNode(monsterNode)
+        
+        /*
         guard let virtualObjectScene = SCNScene(named: "Monster.scn", inDirectory: "art.scnassets" ) else {
             return
         }
@@ -128,41 +138,101 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             child.geometry?.firstMaterial?.diffuse.contents = UIColor.black
             wrapperNode.addChildNode(child)
         }
-        
+        */
         let posX = floatBetween(-0.5, and: 0.5)
         let posY = floatBetween(-0.5, and: 0.5 )
-        wrapperNode.pivot = SCNMatrix4MakeRotation(Float(CGFloat(Double.pi/2)), 1, 0, 0)
+        
+        monsterNode.physicsBody?.categoryBitMask = CollisionCategory.ship.rawValue
+        monsterNode.physicsBody?.contactTestBitMask = CollisionCategory.bullet.rawValue
+     //   monsterNode.pivot = SCNMatrix4MakeRotation(Float(CGFloat(Double.pi/2)), 1, 0, 0)
+        monsterNode.position = SCNVector3(posX, posY, -1)
 
-        wrapperNode.position = SCNVector3(posX, posY, -1)
      
         print("Placing Monster")
 
-        sceneView.scene.rootNode.addChildNode(wrapperNode)
+        sceneView.scene.rootNode.addChildNode(monsterNode)
         
         
     }
+ 
+ 
+    
+    
+    
+    
+    
+    
+    
+    func removeNode(_ node: SCNNode, explosion: Bool) {
+        
+                print("removing Node")
+                node.removeFromParentNode()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    class Bullet: SCNNode {
+        override init () {
+            super.init()
+            let sphere = SCNSphere(radius: 0.025)
+            self.geometry = sphere
+            let shape = SCNPhysicsShape(geometry: sphere, options: nil)
+            self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: shape)
+            self.physicsBody?.isAffectedByGravity = false
+            self.physicsBody?.categoryBitMask = CollisionCategory.bullet.rawValue
+            self.physicsBody?.collisionBitMask = CollisionCategory.ship.rawValue
+            
+            
+            
+            // add texture
+            let material = SCNMaterial()
+            material.diffuse.contents = UIImage(named: "bullet_texture.jpg")
+            self.geometry?.materials  = [material]
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+    
 
     
-    func removeNode(){
-        
-        
-        
-    }
+    
+    
+    
+    
+    
+    
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        //print("did begin contact", contact.nodeA.physicsBody!.categoryBitMask, contact.nodeB.physicsBody!.categoryBitMask)
+        print("did begin contact", contact.nodeA.physicsBody!.categoryBitMask, contact.nodeB.physicsBody!.categoryBitMask)
         if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.ship.rawValue || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.ship.rawValue { // this conditional is not required--we've used the bit masks to ensure only one type of collision takes place--will be necessary as soon as more collisions are created/enabled
             
             print("Hit ship!")
             self.removeNode(contact.nodeB, explosion: false) // remove the bullet
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { // remove/replace ship after half a second to visualize collision
-                self.removeNode(contact.nodeA, explosion: true)
+                self.removeNode(contact.nodeA, explosion: false)
                 self.addNewShip()
             })
             
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func didTapScreen(_ sender: UITapGestureRecognizer) { // fire bullet in direction camera is facing
         
@@ -208,7 +278,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     struct CollisionCategory: OptionSet {
         let rawValue: Int
         
-        static let 2  = CollisionCategory(rawValue: 1 << 0) // 00...01
+        static let bullet  = CollisionCategory(rawValue: 1 << 0) // 00...01
         static let ship = CollisionCategory(rawValue: 1 << 1) // 00..10
     }
     
