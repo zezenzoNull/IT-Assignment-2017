@@ -10,8 +10,10 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
 
+    // Few Cheeky Declarations
+    
     @IBOutlet var menu: UIButton!
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var score: UILabel!
@@ -19,6 +21,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var mainView: UIView!
     @IBOutlet var crosshair: UIImageView!
+    
+    var timer = Timer()
+    var counter = 30
+    
+    // Timer
+    
+   // var timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.userScore), userInfo: nil, repeats: true)
+    
+    
+    // Setting up Scene
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,17 +39,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
         
         // Create an Empty Scene
         let scene = SCNScene()
         
+        
         // Set the scene to the view
         sceneView.scene = scene
         
-        self.addNewShip()
+        sceneView.scene.physicsWorld.contactDelegate = self
+
+        self.placeMonster()
         
     }
+    
+    // End
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,6 +91,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 */
     
+    
+    
+    
+    
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
@@ -94,7 +118,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 
     
-    // Getting Users Position
+    
+    
+    
+    
+    // Getting Users Position ----------------------------------------------------------------------------------------/
     
     func getUserVector() -> (SCNVector3, SCNVector3) { // (direction, position)
         if let frame = self.sceneView.session.currentFrame {
@@ -107,12 +135,33 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
     
+    // Getting Users Position End ------------------------------------------------------------------------------------/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Float Function Begin ------------------------------------------------------------------------------------------/
+    
+    
     func floatBetween(_ first: Float,  and second: Float) -> Float { // random float between upper and lower bound (inclusive)
         return (Float(arc4random()) / Float(UInt32.max)) * (first - second) + second
     }
     
+    // Float Function End --------------------------------------------------------------------------------------------/
     
-    // Placing the Monster
+    
+    
+    
+    
+    
+    
+    
+    // Placing the Monster -------------------------------------------------------------------------------------------/
     
     let path = Bundle.main.path(forResource: "Table", ofType: "scn", inDirectory: "Resources.scnassets/Models")
     
@@ -155,6 +204,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
  
+    // Placing Monster End -------------------------------------------------------------------------------------------/
  
     
     
@@ -163,12 +213,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    // Remove Node ----------------------------------------------------------------------------------------------------/
+    
     func removeNode(_ node: SCNNode, explosion: Bool) {
         
                 print("removing Node")
                 node.removeFromParentNode()
     }
     
+    // Remove Node End ------------------------------------------------------------------------------------------------/
     
     
     
@@ -177,6 +230,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    
+    // Bullet Class Begins --------------------------------------------------------------------------------------------/
     
     class Bullet: SCNNode {
         override init () {
@@ -202,7 +257,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-
+    // Bullet Class Ends ---------------------------------------------------------------------------------------------/
     
     
     
@@ -210,22 +265,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    
+    
+    // Collision Detection Function -----------------------------------------------------------------------------------/
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print("did begin contact", contact.nodeA.physicsBody!.categoryBitMask, contact.nodeB.physicsBody!.categoryBitMask)
-        if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.ship.rawValue || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.ship.rawValue { // this conditional is not required--we've used the bit masks to ensure only one type of collision takes place--will be necessary as soon as more collisions are created/enabled
+        if contact.nodeA.physicsBody?.categoryBitMask == CollisionCategory.ship.rawValue || contact.nodeB.physicsBody?.categoryBitMask == CollisionCategory.bullet.rawValue { // this conditional is not required--we've used the bit masks to ensure only one type of collision takes place--will be necessary as soon as more collisions are created/enabled
             
             print("Hit ship!")
             self.removeNode(contact.nodeB, explosion: false) // remove the bullet
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { // remove/replace ship after half a second to visualize collision
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { // remove/replace ship after half a second to visualize collision
                 self.removeNode(contact.nodeA, explosion: false)
-                self.addNewShip()
+                self.placeMonster()
             })
             
         }
     }
     
+    // Collision Ends Fudge YES!!!! ----------------------------------------------------------------------------------/
     
     
     
@@ -233,6 +292,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     
+    // Tapping Screen Action Using gesture Begins --------------------------------------------------------------------/
     
     @IBAction func didTapScreen(_ sender: UITapGestureRecognizer) { // fire bullet in direction camera is facing
         
@@ -248,32 +308,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(bulletsNode)
         
         
-        placeMonster()
-        
-        
     }
     
+    // Tapping Screen Action Ends ------------------------------------------------------------------------------------/
     
     
     
     
+    
+    
+    
+    // User Score Functions ------------------------------------------------------------------------------------------/
+   
     
     func userScore() {
         
         
+
         
     }
     
-    
-    func addNewShip() {
-        
-        
-        
-        
-    }
+    // User Score Functions End --------------------------------------------------------------------------------------/
     
     
     
+
+    
+    
+    
+    // Collision Category Begin --------------------------------------------------------------------------------------/
     
     struct CollisionCategory: OptionSet {
         let rawValue: Int
@@ -283,7 +346,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     
-    
+    // Collision Category Ends ----------------------------------------------------------------------------------------/
     
     
     
