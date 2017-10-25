@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import AVFoundation
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
 
@@ -19,12 +20,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet var score: UILabel!
     @IBOutlet var time: UILabel!
     
+    @IBOutlet var pressToStart: UIButton!
     @IBOutlet var mainView: UIView!
     @IBOutlet var crosshair: UIImageView!
     
+    var audioPlayer: AVAudioPlayer!
     var timer = Timer()
     var counter = 30
-    
+    var scoreCounter = 0
     // Timer
     
    // var timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.userScore), userInfo: nil, repeats: true)
@@ -118,9 +121,41 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     }
 
     
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
+    }
+
+    // Timer Function
+    @objc func timerAction(_ sender: Timer) {
+        counter -= 1
+        time.text = "\(counter)"
+        
+            if (counter <= 0) {
+                
+                sender.invalidate()
+                
+                let gameOver = UIAlertController(title: "Game Over", message: "Your score is \(scoreCounter)", preferredStyle: .actionSheet)
+                
+                
+                
+                let dismissAlertAction = UIAlertAction(title: "Dismiss", style: .default, handler: {
+                    (alert: UIAlertAction!) -> Void in
+                    self.counter = 30
+                    self.scoreCounter = 0
+                    self.score.text = "0"
+                    self.time.text = "30"
+                })
+                gameOver.addAction(dismissAlertAction)
+                
+                self.present(gameOver, animated: true, completion: nil)
+                
+            }
+        
+    }
     
-    
-    
+    // End
     
     // Getting Users Position ----------------------------------------------------------------------------------------/
     
@@ -138,8 +173,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // Getting Users Position End ------------------------------------------------------------------------------------/
     
     
-    
-    
+    // Start
+    @IBAction func startGame(sender: UIButton) {
+        
+        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timerAction(_:)), userInfo: nil, repeats: true)
+        
+        sender.isHidden = true
+        
+        
+    }
     
     
     
@@ -201,7 +243,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
 
         sceneView.scene.rootNode.addChildNode(monsterNode)
         
-        
+
     }
  
     // Placing Monster End -------------------------------------------------------------------------------------------/
@@ -277,8 +319,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             self.removeNode(contact.nodeB, explosion: false) // remove the bullet
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { // remove/replace ship after half a second to visualize collision
+                self.soundEffect(ofType: .explosion)
                 self.removeNode(contact.nodeA, explosion: false)
                 self.placeMonster()
+                self.scoreCounter += 1
+                self.score.text = "\(self.scoreCounter)"
             })
             
         }
@@ -306,6 +351,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         let bulletDirection = direction
         bulletsNode.physicsBody?.applyForce(bulletDirection, asImpulse: true)
         sceneView.scene.rootNode.addChildNode(bulletsNode)
+        self.soundEffect(ofType: .bullet)
         
         
     }
@@ -349,6 +395,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // Collision Category Ends ----------------------------------------------------------------------------------------/
     
     
+    enum sounds: String {
+        case explosion = "explosion"
+        case bullet = "bullet"
+    }
+    
+    func soundEffect(ofType effect: sounds) {
+        
+        // Async to avoid substantial cost to graphics processing (may result in sound effect delay however)
+        DispatchQueue.main.async {
+            do
+            {
+                if let effectURL = Bundle.main.url(forResource: effect.rawValue, withExtension: "mp3") {
+                    
+                    self.audioPlayer = try AVAudioPlayer(contentsOf: effectURL)
+                    self.audioPlayer.play()
+                    
+                }
+            }
+            catch let error as NSError {
+                print(error.description)
+            }
+        }
+    }
     
     
     
