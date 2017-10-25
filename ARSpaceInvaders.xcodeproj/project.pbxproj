@@ -20,11 +20,12 @@
 		9E83454D1F9F595B00D62183 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E83454C1F9F595B00D62183 /* bar.png */; };
 		9EBEB81D1FA0B05F00E57102 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EBEB81C1FA0B05E00E57102 /* explosion.mp3 */; };
 		9EBEB81F1FA0B11900E57102 /* bullet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9EBEB81E1FA0B11900E57102 /* bullet.mp3 */; };
+		9EBEB8211FA0C05B00E57102 /* invader.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EBEB8201FA0C05B00E57102 /* invader.png */; };
 		9ED36AD81FA00FB200F58F37 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED36AD71FA00FB200F58F37 /* crosshair.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E5E60921F93606600912EF6 /* MainITAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MainITAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E5E60921F93606600912EF6 /* ARSpaceInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARSpaceInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E5E60951F93606600912EF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E5E60971F93606600912EF6 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9E5E60991F93606600912EF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +40,7 @@
 		9E83454C1F9F595B00D62183 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
 		9EBEB81C1FA0B05E00E57102 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		9EBEB81E1FA0B11900E57102 /* bullet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bullet.mp3; sourceTree = "<group>"; };
+		9EBEB8201FA0C05B00E57102 /* invader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invader.png; sourceTree = "<group>"; };
 		9ED36AD71FA00FB200F58F37 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crosshair.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +66,7 @@
 		9E5E60931F93606600912EF6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E5E60921F93606600912EF6 /* MainITAssignment.app */,
+				9E5E60921F93606600912EF6 /* ARSpaceInvaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,6 +80,7 @@
 				9E5E60B11F9364D400912EF6 /* VirtualObject.swift */,
 				9E5E60A91F93608A00912EF6 /* Monster.scn */,
 				9E5E60AF1F93649400912EF6 /* MonsterFile.swift */,
+				9EBEB8201FA0C05B00E57102 /* invader.png */,
 				9E5E60AD1F93630300912EF6 /* bullet_texture.jpg */,
 				9ED36AD71FA00FB200F58F37 /* crosshair.png */,
 				9EBEB81E1FA0B11900E57102 /* bullet.mp3 */,
@@ -94,9 +97,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9E5E60911F93606600912EF6 /* MainITAssignment */ = {
+		9E5E60911F93606600912EF6 /* ARSpaceInvaders */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E5E60A61F93606600912EF6 /* Build configuration list for PBXNativeTarget "MainITAssignment" */;
+			buildConfigurationList = 9E5E60A61F93606600912EF6 /* Build configuration list for PBXNativeTarget "ARSpaceInvaders" */;
 			buildPhases = (
 				9E5E608E1F93606600912EF6 /* Sources */,
 				9E5E608F1F93606600912EF6 /* Frameworks */,
@@ -106,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = MainITAssignment;
+			name = ARSpaceInvaders;
 			productName = MainITAssignment;
-			productReference = 9E5E60921F93606600912EF6 /* MainITAssignment.app */;
+			productReference = 9E5E60921F93606600912EF6 /* ARSpaceInvaders.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +130,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9E5E608D1F93606600912EF6 /* Build configuration list for PBXProject "MainITAssignment" */;
+			buildConfigurationList = 9E5E608D1F93606600912EF6 /* Build configuration list for PBXProject "ARSpaceInvaders" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -140,7 +143,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9E5E60911F93606600912EF6 /* MainITAssignment */,
+				9E5E60911F93606600912EF6 /* ARSpaceInvaders */,
 			);
 		};
 /* End PBXProject section */
@@ -150,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EBEB8211FA0C05B00E57102 /* invader.png in Resources */,
 				9E5E60AE1F93630300912EF6 /* bullet_texture.jpg in Resources */,
 				9E5E60981F93606600912EF6 /* art.scnassets in Resources */,
 				9EBEB81F1FA0B11900E57102 /* bullet.mp3 in Resources */,
@@ -311,10 +315,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UH44V849YZ;
+				DEVELOPMENT_TEAM = Y4HPD3ZYN6;
 				INFOPLIST_FILE = MainITAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.edu.zezenzo.MainITAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zezenzonull.arspaceinvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -326,10 +330,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UH44V849YZ;
+				DEVELOPMENT_TEAM = Y4HPD3ZYN6;
 				INFOPLIST_FILE = MainITAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.edu.zezenzo.MainITAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zezenzonull.arspaceinvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9E5E608D1F93606600912EF6 /* Build configuration list for PBXProject "MainITAssignment" */ = {
+		9E5E608D1F93606600912EF6 /* Build configuration list for PBXProject "ARSpaceInvaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E5E60A41F93606600912EF6 /* Debug */,
@@ -348,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E5E60A61F93606600912EF6 /* Build configuration list for PBXNativeTarget "MainITAssignment" */ = {
+		9E5E60A61F93606600912EF6 /* Build configuration list for PBXNativeTarget "ARSpaceInvaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E5E60A71F93606600912EF6 /* Debug */,

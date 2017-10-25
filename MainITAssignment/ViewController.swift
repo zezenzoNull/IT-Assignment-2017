@@ -10,6 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 import AVFoundation
+import QuartzCore
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
 
@@ -34,6 +35,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     
     // Setting up Scene
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +139,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 
                 sender.invalidate()
                 
+              
+                
+                
                 let gameOver = UIAlertController(title: "Game Over", message: "Your score is \(scoreCounter)", preferredStyle: .actionSheet)
                 
                 
@@ -144,8 +150,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     (alert: UIAlertAction!) -> Void in
                     self.counter = 30
                     self.scoreCounter = 0
-                    self.score.text = "0"
-                    self.time.text = "30"
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainViewController = storyBoard.instantiateViewController(withIdentifier: "mainViewController")
+                    self.present(mainViewController, animated: true, completion: nil)
                 })
                 gameOver.addAction(dismissAlertAction)
                 

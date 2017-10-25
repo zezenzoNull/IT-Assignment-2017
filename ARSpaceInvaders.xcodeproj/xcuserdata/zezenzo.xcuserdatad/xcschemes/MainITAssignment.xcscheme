@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9E5E60911F93606600912EF6"
-               BuildableName = "MainITAssignment.app"
-               BlueprintName = "MainITAssignment"
-               ReferencedContainer = "container:MainITAssignment.xcodeproj">
+               BuildableName = "ARSpaceInvaders.app"
+               BlueprintName = "ARSpaceInvaders"
+               ReferencedContainer = "container:ARSpaceInvaders.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -33,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E5E60911F93606600912EF6"
-            BuildableName = "MainITAssignment.app"
-            BlueprintName = "MainITAssignment"
-            ReferencedContainer = "container:MainITAssignment.xcodeproj">
+            BuildableName = "ARSpaceInvaders.app"
+            BlueprintName = "ARSpaceInvaders"
+            ReferencedContainer = "container:ARSpaceInvaders.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -45,6 +46,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -56,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E5E60911F93606600912EF6"
-            BuildableName = "MainITAssignment.app"
-            BlueprintName = "MainITAssignment"
-            ReferencedContainer = "container:MainITAssignment.xcodeproj">
+            BuildableName = "ARSpaceInvaders.app"
+            BlueprintName = "ARSpaceInvaders"
+            ReferencedContainer = "container:ARSpaceInvaders.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E5E60911F93606600912EF6"
-            BuildableName = "MainITAssignment.app"
-            BlueprintName = "MainITAssignment"
-            ReferencedContainer = "container:MainITAssignment.xcodeproj">
+            BuildableName = "ARSpaceInvaders.app"
+            BlueprintName = "ARSpaceInvaders"
+            ReferencedContainer = "container:ARSpaceInvaders.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
@@ -86,6 +88,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "ARSpaceInvaders"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

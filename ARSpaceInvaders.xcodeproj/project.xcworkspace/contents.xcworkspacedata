@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MainITAssignment.xcodeproj">
+      location = "self:/Users/yogita/IT-Assignment-2017/ARSpaceInvaders.xcodeproj">
    </FileRef>
 </Workspace>
